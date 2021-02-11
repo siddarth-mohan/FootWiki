@@ -1,0 +1,31 @@
+<%- include ('../partials/header.ejs') %>
+
+<a href="/match/display" class="back btn btn-md btn-warning">Back</a>
+<a href="/goal/add" class="btn btn-md btn-success float-right">Add goals</a>
+    <div class="table-wrapper-club">
+        <% if (goal.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Match ID</th>
+						<th scope="col">Goal ID</th>
+                        <th scope="col">Time(minutes)</th>						
+						<th scope="col">Player ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% goal.forEach((goal, index) => { %>
+                        <tr>
+                            <th scope="row"><%= goal.match_id %></th>
+                            <th scope="row"><%= goal.goal_id %></th> 
+							<td><%= goal.goal_time %></td>
+							<td><%= goal.player_id %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No goals found. Go <a href="/goal/add" >here</a> to add goals.</p>
+        <% } %>
+    </div>
+<%- include ('../partials/footer.ejs') %>

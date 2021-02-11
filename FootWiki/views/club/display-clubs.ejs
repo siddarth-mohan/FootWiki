@@ -1,0 +1,38 @@
+<%- include ('../partials/header.ejs') %>
+<a href="/club" class="back btn btn-md btn-warning">Back</a>
+<a href="/club/add" class="btn btn-md btn-success float-right">Add Clubs</a>
+<div class="table-wrapper-club">
+        <% if (clubs.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Home Stadium</th>
+                        <th scope="col">Country</th>
+						<th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% clubs.forEach((club, index) => { %>
+                        <tr>
+                            <th scope="row"><%= club.club_id %></th>
+                            <td><img src="/assets/img/<%= club.image %>" class="rounded-circle player-img" alt=""></td>
+                            <td><%= club.club_name %></td>
+							<td><%= club.home_stadium %></td>
+                            <td><%= club.country %></td>
+							<td>
+								<% var Durl="/club/delete/"+club.club_id %>
+                                <a href="<%= Durl %>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No clubs found. Go <a href="/club/add" >here</a> to add clubs.</p>
+        <% } %>
+    </div>
+</div>
+<%- include ('../partials/footer.ejs') %>

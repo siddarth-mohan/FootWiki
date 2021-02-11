@@ -1,0 +1,26 @@
+<%- include ('../partials/header.ejs') %>
+<a href="/club" class="back btn btn-md btn-warning">Back</a>
+<div class="table-wrapper-club">
+        <% if (clubs.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Number Of Players</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% clubs.forEach((club, index) => { %>
+                        <tr>
+                            <th scope="row"><%= club.club_id %></th>
+                            <td><%= club.no_of_players %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No clubs found. Go <a href="/club/add" >here</a> to add clubs.</p>
+        <% } %>
+    </div>
+</div>
+<%- include ('../partials/footer.ejs') %>

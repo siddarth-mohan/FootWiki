@@ -1,0 +1,42 @@
+<%- include ('../partials/header.ejs') %>
+	
+<a href="/manager" class="back btn btn-md btn-warning">Back</a>
+<a href="/manager/add" class="btn btn-md btn-success float-right">Add Managers</a>
+    <div class="table-wrapper-club">
+        <% if (managers.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Club ID</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% managers.forEach((manager, index) => { %>
+                        <tr>
+                            <th scope="row"><%= manager.manager_id %></th>
+                            <td><img src="/assets/img/<%= manager.image %>" class="rounded-circle player-img" alt=""></td>
+                            <td><%= manager.manager_name %></td>
+                            <td><%= manager.age %></td>
+                            <td><%= manager.country %></td>
+                            <td><%= manager.club_id %></td>
+                            <td>
+								<% var Eurl="/manager/edit/"+manager.manager_id %>
+								<% var Durl="/manager/delete/"+manager.manager_id %>
+                                <a href="<%= Eurl %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                <a href="<%= Durl %>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No managers found. Go <a href="/manager/add" >here</a> to add managers.</p>
+        <% } %>
+    </div>
+<%- include ('../partials/footer.ejs') %>

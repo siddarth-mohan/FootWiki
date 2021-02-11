@@ -1,0 +1,50 @@
+create table employee(
+	eid int primary key,
+	ename varchar(20),
+	address varchar(20),
+	designation varchar(30),
+	date_join date,
+	age int,
+	salary float
+);
+
+ insert into employee values(1,"sid","pune","prof","1980-08-17",50,5000) , (2,"mohan","mumbai","assistant prof","2000-08-17",30,4000);
+  insert into employee values(3,"abc","pune","associate prof","1990-08-17",50,3000) , (4,"xyz","mumbai","teaching assistant","2005-08-17",30,2000),(5,"pqr","mumbai","prof","2019-08-17",30,4000);
+
+delimiter $$
+create procedure raise()
+begin
+declare done int default 0;
+declare eno int;
+declare desig varchar(20);
+declare hrdate date;
+declare exp float;
+declare raise_cur cursor for select eid,designation,date_join from employee;
+declare continue handler for not found set done=1;
+open raise_cur;
+repeat
+fetch raise_cur into eno, desig, hrdate;
+if done =0 then
+select datediff(curdate(),hrdate)/365 into exp;
+if desig = "assistant prof" and exp > 10 then 
+update employee set salary= salary + salary*0.1 where eid=eno;
+elseif desig = "prof" and exp > 30 then
+update employee set salary= salary + salary*0.3 where eid=eno;
+elseif desig = "associate prof" and exp > 20 then
+update employee set salary= salary + salary*0.2 where eid=eno;
+elseif desig = "teaching assistant" and exp > 10 then
+update employee set salary= salary + salary*0.05 where eid=eno;
+end if;
+end if;
+until done
+end repeat;
+close raise_cur;
+end$$
+
+select ename from employee where salary>(select avg(salary) from employee);
+
+2018-2020
+may
+select name from employee where year(date_join) in ("2018","2019","2020") and month(date_join)= 5;
+select ename from employee where year(date_join) between "2018" and "2020" and MONTHNAME(date_join)="May";
+

@@ -1,0 +1,27 @@
+<%- include ('../partials/header.ejs') %>
+<a href="/index" class="back btn btn-md btn-warning">Back</a>
+
+<div class="container">
+	<h1>WELCOME TO PLAYER'S HOME PAGE</h1>
+	<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Display All Players</h5>
+        <p class="card-text">Display the details of the players in the tournament.</p>
+        <a href="/player/display" class="btn btn-primary">DISPLAY</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Add Players</h5>
+        <p class="card-text">Add details of a new player.</p>
+        <a href="/player/add" class="btn btn-primary">ADD</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<%- include ('../partials/footer.ejs') %>

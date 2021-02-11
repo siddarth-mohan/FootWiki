@@ -1,0 +1,59 @@
+<%- include ('../partials/header.ejs') %>
+<a href="/player" class="back btn btn-md btn-warning">Back</a>
+<a href="/player/add" class="btn btn-md btn-success float-right">Add Players</a>
+<!-- <h4 class="adb"><a href="/player/add" class="btn btn-md btn-success">Add Players</a></h4> -->
+    <div class="table-wrapper-club">
+        <% if (players.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Club ID</th>
+						<th scope="col">Manager ID</th>
+						<!-- <th scope="col">Club Name</th> -->
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% players.forEach((player, index) => { %>
+                        <tr>
+                            <th scope="row"><%= player.player_id %></th>
+                            <td><img src="/assets/img/<%= player.image %>" class="rounded-circle player-img" alt=""></td>
+                            <td><%= player.player_name %></td>
+                            <td><%= player.age %></td>
+                            <td><%= player.position %></td>
+                            <td><%= player.country %></td>
+                            <td><%= player.club_id %></td>
+							<td><%= player.manager_id %></td>
+								<% var result1 = {}; %>
+								<% var clubname=""; %>
+								<% let query1 = "SELECT club_name FROM `clubs` where club_id ='" + player.club_id + "'";%>
+								<% db.query(query1, (err, result1, feilds) => { %>
+								<%	if (err) { %>
+								<%		res.redirect('/'); %>
+								<%		console.log(err); %>
+								<%		} %>
+									<% club_name = result1[0].clubname; %>
+									<% console.log(clubname); %>
+								<%	})%>
+							<!-- <td><%=// clubname %></td> -->
+                            <td>
+								<% var Eurl="/player/edit/"+player.player_id %>
+								<% var Durl="/player/delete/"+player.player_id %>
+                                <a href="<%= Eurl %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                <a href="<%= Durl %>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No players found. Go <a href="/player/add" >here</a> to add players.</p>
+        <% } %>
+    </div>
+<%- include ('../partials/footer.ejs') %>

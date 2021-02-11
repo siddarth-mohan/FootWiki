@@ -1,0 +1,56 @@
+<%- include ('partials/header.ejs') %>
+<div class="jumbotron jumbotron-fluid bg-grey">
+  <div class="container">
+    <h1 class="display-4">FootWiKi</h1>
+    <p class="lead">Welcome to footwiki , this website will provide you with all the details of the tournament.
+	  Get all details on clubs,player,manager and matches here.</p>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row pd-top" style="padding-bottom: 7rem;">
+	
+	<div class="col md-3">
+		<div class="card" style="width: 15rem;">
+  			<img src="/assets/clubss.jpg" class="card-img-top" alt="...">
+  			<div class="card-body">
+    			<h5 class="card-title">Clubs</h5>
+    			<p class="card-text">Get all details of the clubs in the tournament and ADD new clubs and DELETE clubs.</p>
+    			<a href="/club" class="btn btn-primary">Clubs</a>
+  			</div>
+		</div>
+	</div>
+	<div class="col md-3">
+		<div class="card" style="width: 15rem;">
+  			<img src="/assets/playerss.jpg" class="card-img-top" alt="...">
+  			<div class="card-body">
+    			<h5 class="card-title">Players</h5>
+    			<p class="card-text">Get all details of the players in the tournament and ADD new players, UPDATE information of players and DELETE players information.</p>
+    			<a href="/player" class="btn btn-primary">Players</a>
+  			</div>
+		</div>
+	</div>
+	
+	<div class="col md-3">
+		<div class="card" style="width: 15rem;">
+  		<img src="/assets/managerss.jpg" class="card-img-top" alt="...">
+  		<div class="card-body">
+    		<h5 class="card-title">Managers</h5>
+    		<p class="card-text">Get all details of the managers in the tournament and ADD new managers, UPDATE details of managers and DELETE managers information.</p>
+    		<a href="/manager" class="btn btn-primary">Managers</a>
+  		</div>
+		</div>
+	</div>
+	<div class="col md-3">
+		<div class="card" style="width: 15rem;">
+  		<img src="/assets/matchess.jpg" class="card-img-top" alt="...">
+  		<div class="card-body">
+    		<h5 class="card-title">Matches</h5>
+    		<p class="card-text">Here you will get information of all the matches and also the details of goals scored in each match, when and by whom the goal was scored</p>
+    		<a href="/match" class="btn btn-primary">Matches</a>
+  		</div>
+	</div>
+</div>
+</div>
+
+<%- include ('partials/footer.ejs') %>

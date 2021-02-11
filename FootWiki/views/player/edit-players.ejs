@@ -1,0 +1,63 @@
+<%- include ('../partials/header.ejs') %>
+<h4><a href="/player/display" class="back btn btn-md btn-warning">Back</a></h4>
+<div class="container">
+           <h1>Enter Player Details (All fields required)</h1>
+    <% if (player) { %>
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+				<div class="form-group col-md-4">
+                    <label for="player_id">Player ID</label>
+                    <input type="number" class="form-control" name="player_id" id="player_id" value="<%= player.player_id %>" required disabled title="Player ID cannot be edited.">
+                </div>
+				
+                <div class="form-group col-md-4">
+                    <label for="first-name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" value="<%= player.player_name %>" required disabled title="Player name cannot be edited.">
+                </div>
+				
+                <div class="form-group col-md-4">
+                    <label for="age">Age</label>
+                    <input type="number" class="form-control" name="age" id="age" value="<%= player.age %>" required>
+                </div>
+			</div>
+			
+			<div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" name="country" id="country" value="<%= player.country %>" required>
+                </div>
+				
+				<div class="form-group col-md-4">
+                    <label for="number">Club ID</label>
+                    <input type="number" class="form-control" name="club_id" id="club_id" value="<%= player.club_id %>" required>
+				</div>
+				
+				<div class="form-group col-md-4">
+                    <label for="number">Manager_id</label>
+                    <input type="number" class="form-control" name="manager_id" id="manager_id" value="<%= player.manager_id %>" required>
+				</div>
+            </div>
+            
+            <div class="form-group col-md-6">
+                    <label for="position">Position</label>
+                    <select id="position" name="position" class="form-control" required>
+                        <option selected><%= player.position %></option>
+                        <option>Goalkeeper</option>
+                        <option>Centre Back</option>
+                        <option>Right Back</option>
+                        <option>Left Back</option>
+                        <option>Defensive Midfielder</option>
+                        <option>Central Midfielder</option>
+                        <option>Attacking Midfielder</option>
+                        <option>Right Wing Forward</option>
+                        <option>Left Wing Forward</option>
+                        <option>Striker</option>
+                    </select>
+            </div>
+            <button type="submit" class="btn btn-success float-right">Update Player</button>
+        </form>
+    <% } else { %>
+        <p class="text-center">Player Not Found. Go <a href="/player/add">here</a> to add players.</p>
+    <% } %>
+</div>
+<%- include ('../partials/footer.ejs') %>

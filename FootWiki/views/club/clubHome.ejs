@@ -1,0 +1,36 @@
+<%- include ('../partials/header.ejs') %>
+<h4><a href="/index" class="back btn btn-md btn-warning">Back</a></h4>
+
+<div class="container">
+	<h1>WELCOME TO CLUB'S HOME PAGE</h1>
+	<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Display All Clubs</h5>
+        <p class="card-text">this page will display all the clubs in the tournament and all the details about them.</p>
+        <a href="/club/display" class="btn btn-primary">DISPLAY</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Add Clubs</h5>
+        <p class="card-text">Go to this page to add new clubs by giving details of the clubs.</p>
+        <a href="/club/add" class="btn btn-primary">ADD</a>
+      </div>
+    </div>
+  </div>
+	<div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Clubs count</h5>
+        <p class="card-text">This page will show you the number of players in each club</p>
+        <a href="/club/count" class="btn btn-primary">GO</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<%- include ('../partials/footer.ejs') %>

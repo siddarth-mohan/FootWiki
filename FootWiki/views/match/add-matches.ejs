@@ -1,0 +1,35 @@
+<%- include ('../partials/header.ejs') %>
+<h4><a href="/match" class="back btn btn-md btn-warning">Back</a></h4>
+    <div class="container">
+       <h1>
+		   Enter match details (All fields mandatory)
+		</h1>
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+				<div class="form-group col-md-6">
+					<input type="number" class="form-control" name="match_id" id="match_id" placeholder="match ID" required>
+				</div>
+                <div class="form-group col-md-6">
+                    <input type="date" class="form-control" name="match_date" id="match_date" placeholder="Match Date" required>
+                </div>
+            </div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+                    <input type="number" class="form-control" name="home_id" id="home_id" placeholder="Home ID" required>
+                </div>
+				<div class="form-group col-md-6">
+                    <input type="number" class="form-control" name="away_id" id="away_id" placeholder="Away ID" required>
+                </div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+                    <input type="number" class="form-control" name="home_score" id="home_score" placeholder="Home Score" required>
+                </div>
+				<div class="form-group col-md-6">
+                    <input type="number" class="form-control" name="away_score" id="away_score" placeholder="Away Score" required>
+                </div>
+			</div>
+            <button type="submit" class="btn btn-primary float-right">Add Match</button>
+        </form>
+    </div>
+<%- include ('../partials/footer.ejs') %>

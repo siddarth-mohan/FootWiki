@@ -1,0 +1,38 @@
+<%- include ('../partials/header.ejs') %>
+<h4><a href="/manager/display" class="back btn btn-md btn-warning">Back</a></h4>
+<div class="container">
+    <% if (manager) { %>
+        <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="manager_id">Manager ID</label>
+                    <input type="number" class="form-control" name="manager_id" id="manager_id" placeholder="<%= manager.manager_id %>" value="<%= manager.manager_id %>" required disabled title="Manager ID cannot be edited.">
+                </div>
+				<div class="form-group col-md-4">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="<%= manager.manager_name %>" value="<%= manager.manager_name %>" required disabled title="manager name cannot be edited.">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="age">Age</label>
+                    <input type="number" class="form-control" name="age" id="age" placeholder="<%= manager.age %>" value="<%= manager.age %>" required>
+				</div>
+
+            </div>
+			<div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" name="country" id="country" placeholder="<%= manager.country %>" value="<%= manager.country %>" pattern="[A-Za-z]{,19}" required>
+                </div>
+				<div class="form-group col-md-4">
+                    <label for="cluv_id">Club ID</label>
+                    <input type="number" class="form-control" name="club_id" id="club_id" placeholder="<%= manager.club_id %>" value="<%= manager.club_id %>" required>
+                </div>
+			</div>
+			<button type="submit" class="btn btn-success btn-md float-right">Update Manager</button>
+        </form>
+    <% } else { %>
+        <p class="text-center">Manager Not Found. Go <a href="/add">here</a> to add managers.</p>
+    <% } %>
+</div>
+
+<%- include ('../partials/footer.ejs') %>

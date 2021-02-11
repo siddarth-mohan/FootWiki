@@ -1,0 +1,41 @@
+<%- include ('../partials/header.ejs') %>
+
+<a href="/match" class="back btn btn-md btn-warning">Back</a>
+<a href="/match/add" class="btn btn-md btn-success float-right">Add matches</a>
+    <div class="table-wrapper-club">
+        <% if (matches.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Date</th>						
+						<th scope="col">Home ID</th> 						
+						<th scope="col">Away ID</th>
+                        <th scope="col">Home score</th>
+                        <th scope="col">Away Score</th>
+						<th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% matches.forEach((match, index) => { %>
+                        <tr>
+                            <th scope="row"><%= match.match_id %></th>
+                            <td><%= match.match_date %></td>                            
+							<td><%= match.home_id %></td>
+							<td><%= match.away_id %></td>
+							<td><%= match.home_score %></td>
+							<td><%= match.away_score %></td>
+							<td>
+								<% var Durl="/goal/display/"+match.match_id %>
+                                <a href="<%= Durl %>" class="btn btn-sm btn-danger">Goal Details</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No matches found. Go <a href="/match/add" >here</a> to add matches.</p>
+        <% } %>
+    </div>
+</div>
+<%- include ('../partials/footer.ejs') %>
