@@ -1,0 +1,56 @@
+create table clubs( club_id int primary key,club_name varchar(20),home_stadium varchar(20),country varchar(20),image varchar(255),user_id int);
+create table managers(manager_id int primary key, manager_name varchar(20), age int, country varchar(20),club_id int ,image varchar(255),user_id int,foreign key(club_id) references clubs(club_id) on delete cascade );
+create table players(player_id int primary key, player_name varchar(20), age int, position varchar(30), country varchar(20),club_id int,manager_id int,image varchar(255),user_id int,foreign key(club_id) references clubs(club_id) on delete cascade, foreign key(manager_id) references managers(manager_id) on delete cascade);
+create table matches(match_id int primary key, match_date date, home_score int, away_score int, home_id int, away_id int,user_id int, foreign key(home_id,club_id) references clubs(club_id) on delete cascade);
+create table goals(goal_id int primary key, goal_time int,match_id int, player_id int,user_id int,foreign key(match_id) references matches(match_id), foreign key(player_id) references players(player_id) on delete cascade);
+create table club_count(club_id int, no_of_players int default 0);
+create table user (user_id int, password varchar(30));
+
+delimiter $
+create trigger club_insert after insert on clubs
+for each row
+begin 
+insert into club_count values(new.club_id , 0);
+end $
+
+create trigger club_delete before delete on clubs
+for each row
+begin
+delete from club_count where club_id = old.club_id;
+end$
+
+-- insert trigger
+delimiter $
+
+create trigger player_insert after insert on players
+for each row
+begin
+update club_count set no_of_players = no_of_players + 1 where club_id=new.club_id;
+End $
+
+
+
+
+-- update trigger
+delimiter $
+create trigger player_update
+before update on players
+for each row
+begin
+update club_count set no_of_players = no_of_players -1 where club_id=old.club_id;
+update club_count set no_of_players = no_of_players +1 where club_id=new.club_id;
+end$
+
+
+-- delete trigger
+
+delimiter $
+
+create trigger player_delete after delete on players 
+for each row
+begin
+update club_count set no_of_players = no_of_players-1 where club_id = old.club_id;
+end $
+		
+
+			
